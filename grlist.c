@@ -359,14 +359,14 @@ int GRAPHisolated(Graph G, vertex v) {
     return 0;
 }
 
-int GRAPHisadj(Graph G, vertex v, vertex w) {
+bool GRAPHisadj(Graph G, vertex v, vertex w) {
   link a;
 
   for (a = G->adj[v]; a != NULL; a = a->next)
     if (a->w == w)
-      return 1;
+      return true;
   
-  return 0;
+  return false;
 }
 
 int GRAPHisequal(Graph G, Graph H) {
@@ -406,11 +406,11 @@ int GRAPHisequal(Graph G, Graph H) {
   return 0;
 }
 
-int GRAPHisEdge(Graph G, vertex v, vertex w) {
+bool GRAPHisEdge(Graph G, vertex v, vertex w) {
   if (GRAPHisadj(G, v, w) && GRAPHisadj(G, w, v))
-    return 1;
+    return true;
   else
-    return 0;
+    return false;
 }
 
 int UGRAPHinsertEdge(Graph G, vertex v, vertex w) {
@@ -420,22 +420,16 @@ int UGRAPHinsertEdge(Graph G, vertex v, vertex w) {
   return 1;
 }
 
-int GRAPHisUndirected(Graph G) {
+bool GRAPHisUndirected(Graph G) {
   link a;
-  int i, cont = 0;
+  vertex v;
 
-
-  for (i = 0; i < G->V; i++) {
-    for (a = G->adj[i]; a != NULL; a = a->next) {
-      if (GRAPHisEdge(G, i, a->w))
-        cont++;
-    }
-  }
-
-  if (cont == G->A)
-    return 1;
-  else
-    return 0;
+  for (v = 0; v < G->V; v++)
+    for (a = G->adj[v]; a != NULL; a = a->next)
+      if (!GRAPHisEdge(G, v, a->w))
+        return false;
+  
+  return true;
 }
 
 int UGRAPHremoveEdge(Graph G, vertex v, vertex w) {

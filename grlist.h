@@ -31,11 +31,11 @@ int GRAPHoutdeg(Graph G, vertex v); //Retorna o grau de saida de um vertice
 int DGRAPHoutdeg(Graph G); //Retorna um vetor indexado pelos vertices, contendo seus graus de saida
 int DGRAPHindeg(Graph G); //Retorna um vetor indexado pelos vertices, contendo seus graus de entrada
 int GRAPHisolated(Graph G, vertex v); //Verifica se um vertice eh isolado
-int GRAPHisadj(Graph G, vertex v, vertex w); //Verifica se dois vertices sao vizinhos
+bool GRAPHisadj(Graph G, vertex v, vertex w); //Verifica se dois vertices sao vizinhos
 int GRAPHisequal(Graph G, Graph H); //Verifica se dois grafos sao iguais
 void GRAPHshow(Graph G); //Imprime a lista de adjacencia do grafo
-int GRAPHisEdge(Graph G, vertex v, vertex w); //Informa se uma ligacao entre dois vertices eh uma aresta
-int GRAPHisUndirected(Graph G); //Informa se um grafo eh nao-dirigido
+bool GRAPHisEdge(Graph G, vertex v, vertex w); //Informa se uma ligacao entre dois vertices eh uma aresta
+bool GRAPHisUndirected(Graph G); //Informa se um grafo eh nao-dirigido
 int GRAPHisTour(Graph G); //Informa se um grafo eh um torneio
 int UGRAPHinsertEdge(Graph G, vertex v, vertex w); //Insere uma aresta entre dois vertices em um grafo nao-dirigido
 int UGRAPHremoveEdge(Graph G, vertex v, vertex w); //Remove uma aresta entre dois vertices em um grafo nao-dirigido
