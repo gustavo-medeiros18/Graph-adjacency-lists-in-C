@@ -28,8 +28,8 @@ void GRAPHisSink(Graph G); //Exibe um vetor booleano que indica quais vertices s
 void GRAPHisSource(Graph G); //Exibe um vetor booleano que indica quais vertices sao ou nao fontes
 int GRAPHindeg(Graph G, vertex v); //Retorna o grau de entrada de um vertice
 int GRAPHoutdeg(Graph G, vertex v); //Retorna o grau de saida de um vertice
-int DGRAPHoutdeg(Graph G); //Retorna um vetor indexado pelos vertices, contendo seus graus de saida
-int DGRAPHindeg(Graph G); //Retorna um vetor indexado pelos vertices, contendo seus graus de entrada
+int *DGRAPHoutdeg(Graph G); //Retorna um vetor indexado pelos vertices, contendo seus graus de saida
+int *DGRAPHindeg(Graph G); //Retorna um vetor indexado pelos vertices, contendo seus graus de entrada
 int GRAPHisolated(Graph G, vertex v); //Verifica se um vertice eh isolado
 bool GRAPHisadj(Graph G, vertex v, vertex w); //Verifica se dois vertices sao vizinhos
 int GRAPHisequal(Graph G, Graph H); //Verifica se dois grafos sao iguais
@@ -39,7 +39,7 @@ bool GRAPHisUndirected(Graph G); //Informa se um grafo eh nao-dirigido
 int GRAPHisTour(Graph G); //Informa se um grafo eh um torneio
 int UGRAPHinsertEdge(Graph G, vertex v, vertex w); //Insere uma aresta entre dois vertices em um grafo nao-dirigido
 int UGRAPHremoveEdge(Graph G, vertex v, vertex w); //Remove uma aresta entre dois vertices em um grafo nao-dirigido
-int UGRAPHdegrees(Graph G); //Retorna um vetor com os graus dos vertices de um grafo nao dirigido
+int *UGRAPHdegrees(Graph G); //Retorna um vetor com os graus dos vertices de um grafo nao dirigido
 bool isTopoNumbering(Graph G, int topo[]); //Decide se uma numeracao eh topologica
 bool isTopoPermut(Graph G, int topo[], int tam); //Decide se uma permutação eh toplogica
 bool GRAPHreach(Graph G, vertex s, vertex t); //Decide se existe um caminho entre dois vertices

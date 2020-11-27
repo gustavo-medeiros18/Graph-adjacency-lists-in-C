@@ -316,7 +316,7 @@ int GRAPHoutdeg(Graph G, vertex v) {
   return count;
 }
 
-int DGRAPHoutdeg(Graph G) {
+int *DGRAPHoutdeg(Graph G) {
   int *vet = (int *)calloc(G->V, sizeof(int));
   int i;
   link a;
@@ -329,14 +329,14 @@ int DGRAPHoutdeg(Graph G) {
       vet[i]++;
   }
 
-  return (int)vet;
+  return vet;
 }
 
-int DGRAPHindeg(Graph G) {
+int *DGRAPHindeg(Graph G) {
   int i, *vet;
   link a;
 
-  vet = (int *)calloc(G->V, sizeof(int));
+  vet = calloc(G->V, sizeof(int));
 
   for (i = 0; i < G->V; i++)
     vet[i] = 0;
@@ -346,7 +346,7 @@ int DGRAPHindeg(Graph G) {
       vet[a->w]++;
   }
 
-  return (int)vet;
+  return vet;
 }
 
 int GRAPHisolated(Graph G, vertex v) {
@@ -439,21 +439,22 @@ int UGRAPHremoveEdge(Graph G, vertex v, vertex w) {
     return 0;
 }
 
-int UGRAPHdegrees(Graph G) {
-  int *grau, i;
+int *UGRAPHdegrees(Graph G) {
+  int *degs;
+  vertex v;
   link a;
 
-  grau = (int *) calloc(G->V, sizeof(int));
+  degs = calloc(G->V, sizeof(int));
 
-  for (i = 0; i < G->V; i++)
-    grau[i] = 0;
+  for (v = 0; v < G->V; v++)
+    degs[v] = 0;
 
-  for (i = 0; i < G->V; i++) {
-    for (a = G->adj[i]; a != NULL; a = a->next)
-      grau[i]++;
+  for (v = 0; v < G->V; v++) {
+    for (a = G->adj[v]; a != NULL; a = a->next)
+      degs[v]++;
   }
 
-  return (int *) grau;
+  return degs;
 }
 
 bool isTopoNumbering(Graph G, int topo[]) {
