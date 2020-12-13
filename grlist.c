@@ -492,10 +492,10 @@ bool GRAPHreach(Graph G, vertex s, vertex t) {
     return true;
 }
 
-bool GRAPHcheckWalk(Graph G, int seq[], int tam) {
+bool GRAPHcheckWalk(Graph G, int seq[], int n) {
   int i;
 
-  for (i = 0; i < tam - 1; i++)
+  for (i = 0; i < n - 1; i++)
     if (!GRAPHisadj(G, seq[i], seq[i + 1]))
       return false;
   

@@ -43,7 +43,7 @@ int *UGRAPHdegrees(Graph G); //Retorna um vetor com os graus dos vertices de um 
 bool isTopoNumbering(Graph G, int topo[]); //Decide se uma numeracao eh topologica
 bool isTopoPermut(Graph G, int topo[], int tam); //Decide se uma permutação eh toplogica
 bool GRAPHreach(Graph G, vertex s, vertex t); //Decide se existe um caminho entre dois vertices
-bool GRAPHcheckWalk(Graph G, int seq[], int tam); //Decide se uma dada sequencia dos vertices de um grafo eh um passeio
+bool GRAPHcheckWalk(Graph G, int seq[], int n); //Decide se uma dada sequencia dos vertices de um grafo eh um passeio
 bool GRAPHcheckSimplePath(Graph G, int seq[], int tam); //Decide se uma dada sequencia dos vertices eh um caminho simples
 bool GRAPHcheckCycle(Graph G, int seq[], int tam); //Verifica se uma sequencia de vertices eh um ciclo
 bool GRAPHisTopo(Graph G); //Decide se um grafo eh topologico
