@@ -663,6 +663,35 @@ bool GRAPHisRootedForest(Graph G) {
   return true;
 }
 
+vertex GRAPHgiveRoot(Graph G) {
+  vertex v;
+  vertex isRoot[G->V];
+
+  for (int i = 0; i < G->V; ++i) {
+    isRoot[i] = 1;
+
+    for (v = 0; v < G->V; ++v) {
+      if (G->adj[v] == NULL)
+        isRoot[v] = 0;
+
+      for (vertex q = 0; (q < G->V) && (isRoot[v] == 1); ++q) {
+        for (link a = G->adj[q]; a != NULL; a = a->next)
+          if (a->w == v) {
+            isRoot[v] = 0;
+
+            break;
+          }
+      }
+    }
+  }
+
+  for (int i = 0; i < G->V; i++)
+    if (isRoot[i])
+      return i;
+  
+  return -1;
+}
+
 void GRAPHshow(Graph G) {
   link a;
   int i;
