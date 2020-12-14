@@ -278,20 +278,33 @@ void GRAPHisSink(Graph G) {
 
 void GRAPHisSource(Graph G) {
   vertex v;
-  bool *isSource;
-  link a;
+  vertex isSource[G->V];
 
-  isSource = calloc(G->V, sizeof(bool));
+  for (int i = 0; i < G->V; ++i) {
+    isSource[i] = 1;
 
-  for (v = 0; v < G->V; v++)
-    isSource[v] = true;
+    for (v = 0; v < G->V; ++v) {
+      if (G->adj[v] == NULL)
+        isSource[v] = 0;
 
-  for (v = 0; v < G->V; v++)
-    for (a = G->adj[v]; a != NULL; a = a->next)
-      isSource[a->w] = false;
+      for (vertex q = 0; (q < G->V) && (isSource[v] == 1); ++q) {
+        for (link a = G->adj[q]; a != NULL; a = a->next)
+          if (a->w == v) {
+            isSource[v] = 0;
 
-  for (v = 0; v < G->V; v++)
-    isSource[v] ? (printf("[%d]: TRUE\n", v)) : (printf("[%d]: FALSE\n", v));
+            break;
+          }
+      }
+    }
+  }
+
+  printf("\nSources: ");
+
+  for (int i = 0; i < G->V; ++i)
+    if (isSource[i] == 1)
+        printf("%d ", i);
+  
+  printf("\n");
 }
 
 int GRAPHindeg(Graph G, vertex v) {
