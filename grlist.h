@@ -15,7 +15,7 @@ Graph GRAPHrand1(int V, int A); //Cria um grafo aleatorio
 Graph GRAPHrand2(int V, int A); //Tambem cria um grafo aleatorio
 Graph GRAPHbuildPath(int V); //Cria um grafo caminho
 Graph GRAPHbuildComplete(int V); //Cria um grafo completo
-Graph GRAPHbuildTour(int V); //Cria um grafo torneio
+Graph GRAPHbuildTournament(int V); //Cria um grafo torneio
 Graph GRAPHbuildCycle(int V); //Cria um grafo caminho
 Graph GRAPHbuildTwo(int V); //Cria um grafo de "2 em 2"
 Graph GRAPHbuildGrid(int m, int n); //Cria uma grade dirigida m x n
@@ -36,7 +36,7 @@ int GRAPHisequal(Graph G, Graph H); //Verifica se dois grafos sao iguais
 void GRAPHshow(Graph G); //Imprime a lista de adjacencia do grafo
 bool GRAPHisEdge(Graph G, vertex v, vertex w); //Informa se uma ligacao entre dois vertices eh uma aresta
 bool GRAPHisUndirected(Graph G); //Informa se um grafo eh nao-dirigido
-int GRAPHisTour(Graph G); //Informa se um grafo eh um torneio
+bool GRAPHisTournament(Graph G); //Informa se um grafo eh um torneio
 int UGRAPHinsertEdge(Graph G, vertex v, vertex w); //Insere uma aresta entre dois vertices em um grafo nao-dirigido
 int UGRAPHremoveEdge(Graph G, vertex v, vertex w); //Remove uma aresta entre dois vertices em um grafo nao-dirigido
 int *UGRAPHdegrees(Graph G); //Retorna um vetor com os graus dos vertices de um grafo nao dirigido

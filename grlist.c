@@ -95,7 +95,7 @@ Graph GRAPHbuildComplete(int V) {
   return G;
 }
 
-Graph GRAPHbuildTour(int V) {
+Graph GRAPHbuildTournament(int V) {
   Graph G = GRAPHinit(V);
   vertex v, w;
 
@@ -154,20 +154,20 @@ Graph GRAPHbuildGrid(int m, int n) {
   return G;
 }
 
-int GRAPHisTour(Graph G) {
-  int qtd = G->V * (G->V - 1);
-  vertex v;
-  link a;
+bool GRAPHisTournament(Graph G) {
+  int maxArcs = G->V * (G->V - 1);
+  vertex v, w;
 
-  if (G->A != qtd / 2)
-    return 0;
+  if (G->A != (maxArcs / 2))
+    return false;
 
   for (v = 0; v < G->V; v++)
-    for (a = G->adj[v]; a != NULL; a = a->next)
-      if (v == a->w || GRAPHisadj(G, a->w, v))
-        return 0;
+    for (w = 0; w < G->V; w++)
+      if (v != w)
+        if (!((GRAPHisadj(G, v, w) && !GRAPHisadj(G, w, v)) || (!GRAPHisadj(G, v, w) && GRAPHisadj(G, w, v))))
+          return false;
   
-  return 1;
+  return true;
 }
 
 int GRAPHdestroy(Graph G) {
