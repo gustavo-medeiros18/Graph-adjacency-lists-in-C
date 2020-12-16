@@ -44,10 +44,12 @@ bool isTopoNumbering(Graph G, int topo[]); //Decide se uma numeracao eh topologi
 bool isTopoPermut(Graph G, int topo[], int tam); //Decide se uma permutação eh toplogica
 bool GRAPHreach(Graph G, vertex s, vertex t); //Decide se existe um caminho entre dois vertices
 bool GRAPHcheckWalk(Graph G, int seq[], int n); //Decide se uma dada sequencia dos vertices de um grafo eh um passeio
-bool GRAPHcheckSimplePath(Graph G, int seq[], int tam); //Decide se uma dada sequencia dos vertices eh um caminho simples
+int GRAPHcheckSimplePath(Graph G, int seq[], int tam); //Decide se uma dada sequencia dos vertices eh um caminho simples
 bool GRAPHcheckCycle(Graph G, int seq[], int tam); //Verifica se uma sequencia de vertices eh um ciclo
 bool GRAPHisTopo(Graph G); //Decide se um grafo eh topologico
 bool GRAPHisRootedForest(Graph G); //Decide se um grafo eh uma floresta radicada
 vertex GRAPHgiveRoot(Graph G); /*Recebe uma floresta radicada e retorna uma raiz dessa floresta*/
 int GRAPHvertexDepth(Graph G, int pa[], vertex v); /*Retorna a profundidade de um vertice v*/
 int *ConvertNumtoPer(int num[], int tam); //Converte uma numeração para permutação
+bool VerifyRepV(int v[], int tam);
+bool VerifyRepArc(int seq[], int tam);

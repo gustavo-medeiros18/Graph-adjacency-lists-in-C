@@ -515,52 +515,50 @@ bool GRAPHcheckWalk(Graph G, int seq[], int n) {
   return true;
 }
 
-int VerifyRepV(int vet[], int tam) { //Verifica se ha vertices repetidos em uma sequencia de vertices
-  int i, j, cont;
+bool VerifyRepV(int v[], int tam) {
+  int i, j, qtt;
 
   for (i = 0; i < tam; i++) {
-    cont = 0;
+    qtt = 0;
 
     for (j = 0; j < tam; j++) {
-      if (vet[i] == vet[j])
-        cont++;
-      
-      if(cont > 1)
-        return 1; //Ha repeticao de valores no vetor
+      if (v[i] == v[j])
+        qtt++;
+      if (qtt > 1)
+        return true;
     }
   }
 
-  return 0; //Nao ha repeticao de valores no vetor
+  return false;
 }
 
-bool GRAPHcheckSimplePath(Graph G, int seq[], int tam) {
-  if(VerifyRepV(seq, tam))
-    return false;
-  
-  if(!GRAPHcheckWalk(G, seq, tam))
-    return false;
-  
-  return true;
-}
+bool VerifyRepArc(int seq[], int tam) {
+  int k, i = 0, j = 1, qtt;
 
-bool VerifyRepArc(Graph G, int seq[], int tam) { //Verifica se em uma sequencia de vertices ha arcos repetidos
-  Graph H = GRAPHinit(G->V);
-  int i = 0, j = 1;
+  while (j != tam) {
+    qtt = 0;
 
-  while (i < tam - 1 &&  j < tam) {
-    if(!GRAPHinsertArc(H, seq[i], seq[j])) {
-      return true; //Ha repeticao de arcos na sequencia
-      
-      GRAPHdestroy(H);
+    for (k = 0; k < tam; k++) {
+      if (seq[i] == seq[k] && seq[j] == seq[k + 1])
+        qtt++;
+      if (qtt > 1)
+        return true;
     }
-      
+
     i++;
     j++;
   }
 
-  GRAPHdestroy(H);
+  return false;
+}
 
-  return false; //Nao ha repeticao de arcos na sequencia
+int GRAPHcheckSimplePath(Graph G, int seq[], int tam) {
+  if (GRAPHcheckWalk(G, seq, tam) && !VerifyRepV(seq, tam) && !VerifyRepArc(seq, tam))
+    return 1;
+  else if (GRAPHcheckWalk(G, seq, tam) && VerifyRepV(seq, tam) && !VerifyRepArc(seq, tam))
+    return 0;
+  else
+    return -1;
 }
 
 bool GRAPHcheckCycle(Graph G, int seq[], int tam) {
@@ -570,7 +568,7 @@ bool GRAPHcheckCycle(Graph G, int seq[], int tam) {
   if(tam < 3)
     return false;
     
-  if(VerifyRepArc(G, seq, tam))
+  if(VerifyRepArc(seq, tam))
     return false;
     
   if(!GRAPHcheckWalk(G, seq, tam))
