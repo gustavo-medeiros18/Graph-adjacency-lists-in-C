@@ -602,6 +602,19 @@ bool isTopoPermut(Graph G, int topo[], int tam) {
   return true;
 }
 
+int GRAPHvertexDepth(Graph G, int pa[], vertex v) {
+  int depth = 0, father = pa[v], son = v;
+
+  while (son != father) {
+    son = father;
+    father = pa[father];
+
+    depth++;
+  } 
+
+  return depth; 
+}
+
 int *ConvertNumtoPer(int num[], int tam) {
   int *per, i;
 

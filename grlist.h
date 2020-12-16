@@ -49,4 +49,5 @@ bool GRAPHcheckCycle(Graph G, int seq[], int tam); //Verifica se uma sequencia d
 bool GRAPHisTopo(Graph G); //Decide se um grafo eh topologico
 bool GRAPHisRootedForest(Graph G); //Decide se um grafo eh uma floresta radicada
 vertex GRAPHgiveRoot(Graph G); /*Recebe uma floresta radicada e retorna uma raiz dessa floresta*/
+int GRAPHvertexDepth(Graph G, int pa[], vertex v); /*Retorna a profundidade de um vertice v*/
 int *ConvertNumtoPer(int num[], int tam); //Converte uma numeração para permutação
