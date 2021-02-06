@@ -505,6 +505,28 @@ bool GRAPHreach(Graph G, vertex s, vertex t) {
     return true;
 }
 
+static void dfsR( Graph G, vertex v) {
+  pre[v] = cnt++;
+
+  for (link a = G->adj[v]; a != NULL; a = a->next) {
+    vertex w = a->w;
+    
+    if (pre[w] == -1)
+      dfsR( G, w);
+  }
+}
+
+void GRAPHdfs(Graph G) {
+  cnt = 0;
+
+  for (vertex v = 0; v < G->V; ++v)
+    pre[v] = -1;
+
+  for (vertex v = 0; v < G->V; ++v)
+    if (pre[v] == -1)
+      dfsR(G, v);
+}
+
 bool GRAPHcheckWalk(Graph G, int seq[], int n) {
   int i;
 

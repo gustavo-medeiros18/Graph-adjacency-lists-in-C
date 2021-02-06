@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 #define vertex int
-static int visit[1000];
-int topo[1000];
+static int visit[1000], cnt;
+int topo[1000], pre[1000];
  
 typedef struct graph *Graph;
 typedef struct node *link;
@@ -43,6 +43,7 @@ int *UGRAPHdegrees(Graph G); //Retorna um vetor com os graus dos vertices de um 
 bool isTopoNumbering(Graph G, int topo[]); //Decide se uma numeracao eh topologica
 bool isTopoPermut(Graph G, int topo[], int tam); //Decide se uma permutação eh toplogica
 bool GRAPHreach(Graph G, vertex s, vertex t); //Decide se existe um caminho entre dois vertices
+void GRAPHdfs(Graph G); /*Realiza uma busca em profundiade de pre ordem*/
 bool GRAPHcheckWalk(Graph G, int seq[], int n); //Decide se uma dada sequencia dos vertices de um grafo eh um passeio
 int GRAPHcheckSimplePath(Graph G, int seq[], int tam); //Decide se uma dada sequencia dos vertices eh um caminho simples
 bool GRAPHcheckCycle(Graph G, int seq[], int tam); //Verifica se uma sequencia de vertices eh um ciclo
