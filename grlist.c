@@ -527,6 +527,49 @@ void GRAPHdfs(Graph G) {
       dfsR(G, v);
 }
 
+static void dfsRPrint(Graph G, vertex v) {
+  pre[v] = cnt++;
+
+  for (link a = G->adj[v]; a != NULL; a = a->next) {
+    vertex w = a->w;
+
+    if (pre[w] == -1) {
+      for (int i = 0; i < contEspacos; i++)
+        printf(" ");
+
+      printf("%d-%d dsfR(G, %d)\n", v, w, w);
+
+      contEspacos += 2;
+      dfsRPrint(G, w);
+
+      for (int i = 0; i < contEspacos; i++)
+        printf(" ");
+
+      printf("%d\n", w);
+
+      contEspacos -= 2;
+    }
+  }
+}
+
+void GRAPHdfsPrint(Graph G) {
+  cnt = 0;
+  contEspacos = 0;
+
+  for (vertex v = 0; v < G->V; ++v)
+    pre[v] = -1;
+
+  for (vertex v = 0; v < G->V; ++v)
+    if (pre[v] == -1 && G->adj[v] != NULL) {
+      printf("%d dsfR(G, %d)\n", v, v);
+
+      dfsRPrint(G, v);
+      printf("%d\n", v);
+      
+      contEspacos = 0;
+    }
+}
+
 bool GRAPHcheckWalk(Graph G, int seq[], int n) {
   int i;
 

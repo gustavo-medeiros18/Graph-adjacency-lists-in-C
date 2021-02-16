@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #define vertex int
-static int visit[1000], cnt;
+static int visit[1000], cnt, contEspacos;
 int topo[1000], pre[1000];
  
 typedef struct graph *Graph;
@@ -44,8 +44,9 @@ bool isTopoNumbering(Graph G, int topo[]); //Decide se uma numeracao eh topologi
 bool isTopoPermut(Graph G, int topo[], int tam); //Decide se uma permutação eh toplogica
 bool GRAPHreach(Graph G, vertex s, vertex t); //Decide se existe um caminho entre dois vertices
 void GRAPHdfs(Graph G); /*Realiza uma busca em profundiade de pre ordem*/
+void GRAPHdfsPrint(Graph G); /*Realiza uma dfs, imprimindo o rastreamento da funcao*/
 bool GRAPHcheckWalk(Graph G, int seq[], int n); //Decide se uma dada sequencia dos vertices de um grafo eh um passeio
-int GRAPHcheckSimplePath(Graph G, int seq[], int tam); //Decide se uma dada sequencia dos vertices eh um caminho simples
+int GRAPHcheckSimplePath(Graph G, int seq[], int tam); /*Decide se uma dada sequencia dos vertices eh um caminho simples*/
 bool GRAPHcheckCycle(Graph G, int seq[], int tam); //Verifica se uma sequencia de vertices eh um ciclo
 bool GRAPHisTopo(Graph G); //Decide se um grafo eh topologico
 bool GRAPHisRootedForest(Graph G); //Decide se um grafo eh uma floresta radicada
