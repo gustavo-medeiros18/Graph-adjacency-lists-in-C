@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #define vertex int
-static int visit[1000], cnt, contEspacos;
+static int visit[1000], cnt, ident;
 int topo[1000], pre[1000];
  
 typedef struct graph *Graph;

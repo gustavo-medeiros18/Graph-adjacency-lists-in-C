@@ -534,27 +534,27 @@ static void dfsRPrint(Graph G, vertex v) {
     vertex w = a->w;
 
     if (pre[w] == -1) {
-      for (int i = 0; i < contEspacos; i++)
+      for (int i = 0; i < ident; i++)
         printf(" ");
 
       printf("%d-%d dsfR(G, %d)\n", v, w, w);
 
-      contEspacos += 2;
+      ident += 2;
       dfsRPrint(G, w);
 
-      for (int i = 0; i < contEspacos; i++)
+      for (int i = 0; i < ident; i++)
         printf(" ");
 
       printf("%d\n", w);
 
-      contEspacos -= 2;
+      ident -= 2;
     }
   }
 }
 
 void GRAPHdfsPrint(Graph G) {
   cnt = 0;
-  contEspacos = 0;
+  ident = 0;
 
   for (vertex v = 0; v < G->V; ++v)
     pre[v] = -1;
@@ -566,7 +566,7 @@ void GRAPHdfsPrint(Graph G) {
       dfsRPrint(G, v);
       printf("%d\n", v);
       
-      contEspacos = 0;
+      ident = 0;
     }
 }
 
