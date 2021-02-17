@@ -505,26 +505,29 @@ bool GRAPHreach(Graph G, vertex s, vertex t) {
     return true;
 }
 
-static void dfsR( Graph G, vertex v) {
+static void dfsR(Graph G, vertex v) {
   pre[v] = cnt++;
+  
+  for (link a = G->adj[v]; a != NULL; a = a->next)
+    if (pre[a->w] == -1) {
+      pa[a->w] = v;
+      dfsR(G, a->w);
+    }
 
-  for (link a = G->adj[v]; a != NULL; a = a->next) {
-    vertex w = a->w;
-    
-    if (pre[w] == -1)
-      dfsR( G, w);
-  }
+  post[v] = cntt++;
 }
 
 void GRAPHdfs(Graph G) {
-  cnt = 0;
+  cnt = cntt = 0;
 
   for (vertex v = 0; v < G->V; ++v)
     pre[v] = -1;
 
   for (vertex v = 0; v < G->V; ++v)
-    if (pre[v] == -1)
+    if (pre[v] == -1) {
+      pa[v] = v;
       dfsR(G, v);
+    }
 }
 
 static void dfsRPrint(Graph G, vertex v) {

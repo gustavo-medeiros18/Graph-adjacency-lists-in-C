@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 #define vertex int
-static int visit[1000], cnt, ident;
-int topo[1000], pre[1000];
+static int visit[1000], cnt, cntt, ident;
+int topo[1000], pre[1000], post[1000], pa[1000];
  
 typedef struct graph *Graph;
 typedef struct node *link;
