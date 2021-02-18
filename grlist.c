@@ -505,12 +505,24 @@ bool GRAPHreach(Graph G, vertex s, vertex t) {
     return true;
 }
 
+bool GRAPHhaveArc(Graph G, vertex v, vertex w) {
+  link a;
+
+  for (a = G->adj[v]; a != NULL; a = a->next)
+    if (a->w == w)
+      return true;
+
+  return false;
+};
+
 static void dfsR(Graph G, vertex v) {
   pre[v] = cnt++;
   
   for (link a = G->adj[v]; a != NULL; a = a->next)
     if (pre[a->w] == -1) {
       pa[a->w] = v;
+
+      printf("O arco %d-%d eh de floresta\n", v, a->w);
       dfsR(G, a->w);
     }
 
@@ -571,6 +583,28 @@ void GRAPHdfsPrint(Graph G) {
       
       ident = 0;
     }
+}
+
+
+void GRAPHshowArcTypes(Graph G) {
+  GRAPHdfs(G);
+
+  int i;
+
+  for (i = 0; i < G->V; i++) {
+    if (pa[i] != -1 && pa[i] != i) {
+      printf("O arco %d-%d eh de avanco\n", pa[i], i);
+
+      if (GRAPHhaveArc(G, i, pa[i]))
+        printf("O arco %d-%d eh de retorno\n", i, pa[i]);
+
+      for (int j = 0; j < G->V; j++)
+        if (j != i) {
+          if (pa[i] == pa[j] && (pa[i] != j && pa[j] != i))
+            printf("%d e %d sao primos\n", i, j);
+        }
+    }
+  }
 }
 
 bool GRAPHcheckWalk(Graph G, int seq[], int n) {

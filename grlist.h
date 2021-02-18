@@ -45,6 +45,7 @@ bool isTopoPermut(Graph G, int topo[], int tam); //Decide se uma permutação eh
 bool GRAPHreach(Graph G, vertex s, vertex t); //Decide se existe um caminho entre dois vertices
 void GRAPHdfs(Graph G); /*Realiza uma busca em profundiade de pre ordem*/
 void GRAPHdfsPrint(Graph G); /*Realiza uma dfs, imprimindo o rastreamento da funcao*/
+void GRAPHshowArcTypes(Graph G); /*Exibe os tipos de arcos de um grafo*/
 bool GRAPHcheckWalk(Graph G, int seq[], int n); //Decide se uma dada sequencia dos vertices de um grafo eh um passeio
 int GRAPHcheckSimplePath(Graph G, int seq[], int tam); /*Decide se uma dada sequencia dos vertices eh um caminho simples*/
 bool GRAPHcheckCycle(Graph G, int seq[], int tam); //Verifica se uma sequencia de vertices eh um ciclo
